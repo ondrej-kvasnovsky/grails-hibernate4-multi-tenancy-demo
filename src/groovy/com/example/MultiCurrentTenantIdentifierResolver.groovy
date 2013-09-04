@@ -12,6 +12,7 @@ class MultiCurrentTenantIdentifierResolver implements CurrentTenantIdentifierRes
     @Override
     String resolveCurrentTenantIdentifier() {
         println "MultiCurrentTenantIdentifierResolver.resolveCurrentTenantIdentifier"
+        // just return some id of tenant... it is not relevant at this moment
         return "1"
     }
 
