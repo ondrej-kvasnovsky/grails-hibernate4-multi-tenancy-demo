@@ -3,14 +3,28 @@ import com.example.Tenant
 import groovy.sql.Sql
 import org.codehaus.groovy.grails.commons.GrailsApplication
 import org.hibernate.SessionFactory
+import org.hibernate.tool.hbm2ddl.SchemaExport
 
 import javax.sql.DataSource
 
 class BootStrap {
 
-    GrailsApplication grailsApplication
+    def grailsApplication
+    def dataSource
 
     def init = { servletContext ->
+        def connection = dataSource.connection
+        def sessionFactory = grailsApplication.mainContext.getBean('&sessionFactory')
+        SchemaExport export = new SchemaExport(sessionFactory.configuration, connection)
+        export.outputFile = 'dataSource-schema.sql'
+        export.delimiter = ';'
+        //this must be changed in order to support create, validate etc
+        export.execute(true, true, false, true)
+    }
+
+//    GrailsApplication grailsApplication
+
+//    def init = { servletContext ->
 //        println 'Executing BootStrap'
 //        SessionFactory sessionFactory = grailsApplication.mainContext.getBean('sessionFactory')
 //        println 'sessionFactory: ' + sessionFactory
@@ -25,7 +39,7 @@ class BootStrap {
 
 //        Tenant ds1 = new Tenant(url: )
 //        ds1.save(failOnError: true)
-    }
+//    }
     def destroy = {
     }
 }

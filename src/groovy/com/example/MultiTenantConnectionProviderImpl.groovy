@@ -29,8 +29,9 @@ class MultiTenantConnectionProviderImpl extends AbstractDataSourceBasedMultiTena
 //            throw new HibernateException("Unknown tenant identifier")
 //        }
         // TODO: create JNDI and lookup
-        DataSource dataSource = new BasicDataSource()
-        dataSource.url = 'jdbc:h2:mem:dev1'
+//        DataSource dataSource = new BasicDataSource()
+//        dataSource.url = 'jdbc:h2:mem:dev1'
+        DataSource dataSource = ApplicationHolder.application.mainContext.getBean('dataSource')
         return dataSource
     }
 }

@@ -5,13 +5,13 @@ import org.hibernate.SessionFactory
 
 class ItemController {
 
-//    static scaffold = true
+    static scaffold = true
 //    static datasource = 'dataSource'
 
-    def index() {
-        SessionFactory sessionFactory = grailsApplication.mainContext.getBean('sessionFactory')
-        Query query = sessionFactory.currentSession.createQuery("from Item")
-
-        render query.list()
-    }
+//    def index() {
+//        SessionFactory sessionFactory = grailsApplication.mainContext.getBean('sessionFactory')
+//        Query query = sessionFactory.currentSession.createQuery("from Item")
+//
+//        render query.list()
+//    }
 }
